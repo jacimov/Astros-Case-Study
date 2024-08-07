@@ -1,0 +1,673 @@
+---
+title: "2024 Astros Analyst Assessment"
+author: "Niccolo (Nicco) Jacimovic"
+date: "2024-07-29"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## Question 1: Evaluating Hitting Performance Metrics
+
+In order to assess the value of hitting performance metrics, I would
+generally follow this approach.
+
+To start, I would clearly define our performance objectives. What
+specific aspects of hitting performance are we trying to measure and
+improve?
+
+Next, I would gather comprehensive data on various hitting metrics. This
+would include traditional statistics like batting average and on-base
+percentage, as well as more advanced metrics like exit velocity and
+launch angle.
+
+I would then analyze each metric based on several key criteria:
+
+1.  Relevance: Does the metric actually measure what we're interested
+    in?
+2.  Consistency: Is the metric stable over time, or does it fluctuate
+    randomly?
+3.  Predictive power: Does the metric help forecast future performance?
+4.  Actionability: Can players, coaches and the front office use
+    insights from this metric to improve performance?
+5.  Simplicity: Is the metric easy to understand and communicate?
+6.  Context independence: Does the metric hold up across different game
+    situations and environments?
+
+To evaluate these criteria, I would use statistical analyses to examine
+relationships between metrics and performance outcomes. I would also
+consult with coaches and players to understand which metrics they find
+most useful in practice.
+
+Finally, I would synthesize this information to identify a core set of
+metrics that best meet our criteria. These metrics would form the
+foundation of our player evaluation and development strategies.
+
+This approach focuses on identifying truly valuable metrics without
+getting too deep into the specifics of predictive modeling. It balances
+statistical rigor with practical considerations to ensure we're using
+metrics that are both analytically sound and useful in real-world
+baseball operations.
+
+## Question 2: Ensuring Model Utility on Novel Data
+
+Ensuring the effectiveness of novel data is super critical when
+developing a model to predict player performance. Here are the key
+methods I would employ to ensure great model performance:
+
+1)  Cross-validation: I would use k-fold cross-validation to assess how
+    well the model generalizes to unseen data. This involves splitting
+    the data into k subsets, training the model on k-1 subsets, and
+    testing it on the remaining subset, repeating this process k times.
+
+2)  Train-test split: Before final model evaluation, I would set aside a
+    portion of the data (probably like 20-30%) as a test set, using it
+    only for final model assessment to simulate performance on truly
+    novel data.
+
+3)  Regularization techniques: To prevent overfitting, I would apply
+    regularization methods like L1 (Lasso) or L2 (Ridge) regularization,
+    which add penalties for model complexity.
+
+4)  Feature selection: I would carefully select features based on their
+    predictive power and domain knowledge, avoiding the inclusion of
+    redundant or irrelevant variables that might lead to overfitting.
+
+5)  Ensemble methods: Techniques like Random Forests or Gradient
+    Boosting can help improve generalization by combining multiple
+    models.
+
+6)  Monitoring for concept drift: I would implement systems to monitor
+    model performance over time, watching for signs of concept drift
+    where the relationship between features and target variables
+    changes.
+
+7)  External validation: When possible, I would test the model on
+    completely separate datasets, such as minor league data or data from
+    other teams (if available), to assess its broader applicability.
+
+8)  Bootstrapping: This technique involves repeatedly sampling from the
+    training data with replacement to create multiple datasets, training
+    models on each, and averaging the results to reduce overfitting.
+
+9)  Sensitivity analysis: I would perform sensitivity analysis to
+    understand how changes in input variables affect the model's
+    predictions, ensuring the model behaves logically across a range of
+    inputs.
+
+By using these methods, I would aim to develop a model that not only
+performs well on historical data but also maintains its predictive power
+when applied to new, unseen player data in future seasons.
+
+I would also potentially consider time-based validation, given that some
+baseball performance data is time-series in nature. This involves
+training the model on earlier seasons and testing it on later seasons to
+mimic real-world prediction scenarios. This would be primarily for
+pitching performance, but could be applied to other data points.
+
+## Question 3: Estimating True Exit Speed Skill Level
+
+In order to estimate a hitter's true exit speed skill level from batted
+ball data with varying sample sizes, I would follow these general
+guidelines:
+
+I would first try to apply empirical Bayes estimation. This method would
+shrink individual estimates towards the overall mean, with the degree of
+shrinkage inversely proportional to the sample size. It helps balance
+individual performance with league-wide trends.
+
+I would then calculate credible intervals. Instead of point estimates,
+I'd provide ranges of plausible true skill levels, with wider intervals
+for smaller sample sizes to capture the inherit uncertainty.
+
+After that, I would use weighted averages for multi-season data. For
+hitters with multiple seasons of data, I'd employ a weighted average,
+giving more weight to recent seasons and those with larger sample sizes.
+
+Lastly, I would try to account for contextual factors. I'd consider
+influences like ballpark effects, weather conditions, and quality of
+opposition pitching to refine the estimates.
+
+This approach, in my opinion, balances statistical rigor with
+practicality, and provides a nuanced view of a hitter's true exit speed
+skill while accounting for the challenges posed by varying sample sizes.
+
+## Question 4: Choosing a Designated Hitter
+
+To determine which player would be more valuable as a designated hitter,
+we need to compare their overall offensive contributions. Let's look at
+Force-Field Fred and Long-Ball Larry based on their expected outcomes
+and use some key offensive metrics to make our decision.
+
+On-Base Percentage (OBP): Force-Field Fred: 1.000 (walks every time)
+Long-Ball Larry: 0.250 (homers 25% of the time)
+
+Slugging Percentage (SLG): Force-Field Fred: 0.000 (never hits)
+Long-Ball Larry: 1.000 (0.25 \* 4 = 1.000)
+
+On-Base Plus Slugging (OPS): Force-Field Fred: 1.000 (1.000 + 0.000)
+Long-Ball Larry: 1.250 (0.250 + 1.000)
+
+Weighted On-Base Average (wOBA): Force-Field Fred: 0.690 (wOBA weight
+for walks) Long-Ball Larry: 0.25 \* 2.10 = 0.525 (wOBA weight for HR)
+
+Based on these metrics, I would choose Long-Ball Larry because he has a
+higher OPS which to me is more valuable than Fred's ability to get on
+base every single time. At first, I was convinced that Force-Field Fred
+would be superior, because he gets on base every PA. His perfect OBP
+would constantly put pressure on the opposing team, allowing other
+batters to drive him in. Additionally, I thought that Fred's consistency
+would be more beneficial over a full season compared to Larry's
+all-or-nothing approach.
+
+However, if we compare just player to player, Long-Ball Larry is
+expected to produce at least 162 runs by himself (assuming he plays
+every game, and has 4 PAs), while Force-Field Fred produce literally no
+runs. Objectively, when specifically comparing only these two players,
+and include no outside factors, Long-Ball Larry is the better choice.
+
+But Baseball is a team game, and there are ways to use both these
+player's drastically different skill sets to significantly improve
+team's offenses.
+
+Force-Field Fred should bat first in the line-up. This maximizes the
+amount of plate appearances he has, which puts him on base the most.
+This also creates an explosion of offense behind him. Traditionally,
+your best hitters bat 2,3,4,5. This means every solo home run from
+hitters in the 2,3, and 4 spots now become 2-run home runs.
+
+Long-Ball Larry should bat 3rd or 4th to effectively use his skill set.
+He should bat earlier in the line up to take advantage of his ability to
+hit a home run in 25% of all plate appearances. Now, whoever is on base,
+now experiences the potential benefit of Larry's slugging.
+
+The average MLB team generated 4.6 runs/game in 2023, which is 0.511
+runs/inning. Doing a simple simulation in R (using probabilities of base
+runner position, given any random PA (from Baseball-Reference 2023 team
+batting statistics), also assuming both LBL and FFF get 600 PAs), we see
+that Long-Ball Larry is expected to produce 277 runs, where as Force
+Field Fred is expected to generate only 137 runs. That means Long-Ball
+Larry produces 140 more runs, over double what Force-Field Fred
+produces.
+
+In the regular season, Long-Ball Larry would be the obvious choice.
+There is an argument to be made about the playoffs about going with
+Force-Field Fred, for better field positioning. Since the sample size of
+the playoffs is much smaller, there is a higher probability that
+Long-Ball Larry goes cold at a critical time.
+
+```{r, label = LBL}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+library(tidyr)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+
+# Set up data
+players <- c("Force-Field Fred", "Long-Ball Larry")
+obp <- c(1.000, 0.250)
+slg <- c(0.000, 1.000)
+ops <- c(1.000, 1.250)
+woba <- c(0.690, 0.525)
+
+# Create dataframe
+df <- data.frame(Player = players, OBP = obp, SLG = slg, OPS = ops, wOBA = woba)
+
+# Reshape the data
+df_long <- df %>%
+  pivot_longer(cols = c(OBP, SLG, OPS, wOBA), 
+               names_to = "Metric", 
+               values_to = "Value")
+
+# Bar plot
+ggplot(df_long, aes(x = Metric, y = Value, fill = Player)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(title = "Comparison of Force-Field Fred vs Long-Ball Larry",
+       x = "Metric",
+       y = "Value") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set2") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+##Simulation
+set.seed(123)
+simulations <- 1000
+pa_per_season <- 600  # Assuming about 150 games with 4 PA per game
+
+simulate_season <- function(player_type, team_obp = 0.320, team_slg = 0.414) {
+  runs <- 0
+  for (pa in 1:pa_per_season) {
+    if (player_type == "Fred") {
+      # Fred always walks
+      runners <- sample(0:3, 1, prob = c(0.551, 0.2354, 0.1647, 0.0489))  # Estimate baserunners
+      runs <- runs + rbinom(1, runners, team_obp)  # Chance to drive in runners
+    } else if (player_type == "Larry") {
+      if (rbinom(1, 1, 0.25) == 1) {  # 25% chance of homer
+        runners <- sample(0:3, 1, prob = c(0.5, 0.25, 0.15, 0.1))  # Estimate baserunners
+        runs <- runs + 1 + runners  # HR always scores self + runners
+      }
+    }
+  }
+  return(runs)
+}
+
+run_simulation <- function(team_obp, team_slg) {
+  fred_runs <- replicate(simulations, simulate_season("Fred", team_obp, team_slg))
+  larry_runs <- replicate(simulations, simulate_season("Larry", team_obp, team_slg))
+  
+  df_runs <- data.frame(
+    Player = rep(c("Force-Field Fred", "Long-Ball Larry"), each = simulations),
+    Runs = c(fred_runs, larry_runs)
+  )
+  
+  return(df_runs)
+}
+
+# Run simulation with league average OBP and SLG
+df_runs_avg <- run_simulation(0.320, 0.414)
+
+# Plot 
+ggplot(df_runs_avg, aes(x = Runs, fill = Player)) +
+  geom_density(alpha = 0.7) +
+  labs(title = "Distribution of Runs Scored per Season",
+       subtitle = "Based on 600 plate appearances per season",
+       x = "Runs",
+       y = "Density") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1")
+
+```
+
+## Question 5: Probability of Recording Fewer than 100 Hits
+
+Given N = 600, we can assume an approximately normal
+distribution.The batter has a probability of success = 0.3, and a
+probability of failure = 0.7. Hitting in baseball is fairly binary (you
+either get on base, or an out). Therefore, the mean should just be n \*
+p, which in this case is .3 \* 600, which is equal to 180 hits. The
+standard deviation is just the sqaure root of the variance of a binary
+distribution, which is n \* p \* q, which is 600 \* .3 \* .7 = 126. The
+st.dev, therefore, is 126\^.5, which is 11.225.
+
+From here, we can standardize the approximate normal curve, and get a
+z-score. Our goal is to figure out the probability of the batter
+recording fewer than 100 hits, which would be essentially P(x\<100),
+which is P(z\<(100-180)/11.225), which is P(z\<-7.111). Without even
+looking at a Z-table, we know the answer is e) Less than 0.1%. This
+would be over 7 st.devs away from the mean. 3 st.devs away from the mean
+basically encompasses 99.7% of the distribution, and we are well above
+that.
+
+## Question 6: Probability that Player X Throws Left Handed
+
+This is an Bayes' theorem problem. Given the probabilities from the
+problem statement P(TL) = 0.11, P(HL) = 0.32, P(HL\|TL) = 0.85, we need
+to determine P(TL\|HL). Using Bayes' theorem, we know that P(TL\|HL) =
+(P(HL\|TL) \* P(TL))/P(HL), which is just (.85 \* .11)/.32 = 0.292.
+
+## Question 7: Lou Rice's True-Talent Batting Average
+
+Since we are given prior and observed data, we can use Bayesian
+methods to enhance the quality of our answer. This question seems best
+tackled (in my opinion) by using a Beta-Binomial approach. Using a
+normal approximation approach is simpler, but the Beta-Binomial approach
+encompasses more uncertainty into the probability, and I think it does a
+better job dealing with tail-end probabilities. The Beta distribution
+represents our uncertainty about Lou's true talent level, while the
+Binomial distribution represents the variability in outcomes for a given
+true talent level.
+
+The prior belief was that a = 58 and b = 142. However, we observed that
+Lou went 43/100, which we can use to update a and b such that a = 101
+and b = 199. Our new distribution should be Beta(101,199).
+
+In order for Lou to have above a .400 batting avg across 500 PAs, he
+would need at least 200 hits. Thus, we need to calculate P(X\>200 \| n =
+500, a = 101, b = 199). This comes out to be about 0.0375166.
+
+```{r, label = Lou}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+library(extraDistr)  # for the beta-binomial distribution functions
+
+a <- 101
+b <- 199
+n <- 500
+threshold <- 200
+
+prob <- 1 - pbbinom(threshold - 1, n, a, b)
+print(prob)
+
+```
+
+## Question 8: Analysis of Batted Ball Data
+
+To determine whether the baseball has been "juiced" in recent
+years, I conducted a comprehensive analysis of various metrics and
+factors that could influence hit distances. The investigation spanned
+from 2015 to 2019, examining not only the direct measures of ball
+performance but also the contextual factors that might contribute to
+changes in hitting outcomes.
+
+When looking at hit distance trends, I observed a clear increase in
+average hit distances over the study period. Mean hit distance rose from
+171.0 feet in 2015 to 184.5 feet in 2019. A linear regression analysis
+confirmed a significant positive trend (p = 0.00853), with an estimated
+increase of 3.799 feet per year. While this increase is notable, it's
+important to consider whether it's solely attributable to changes in the
+ball itself. There was a significant jump in distance from 2016 to 2017
+(about 10 feet).
+
+In my opinion, if the ball were truly "juiced," we would expect to see
+decreases in drag coefficient and increases in exit velocity. However,
+our analysis revealed: - No significant differences in drag coefficients
+between years (ANOVA, p = 0.167) - No significant differences in exit
+velocities between years (ANOVA, p = 0.221)
+
+These findings suggest that the aerodynamic properties and the ball's
+response to contact haven't changed significantly, which doesn't support
+the juiced ball theory.
+
+I examined several contextual factors that could influence hit
+distances:
+
+1)  Pitch Type: Two-seam fastballs resulted in hit distances about 45.6
+    feet shorter than four-seam fastballs (p \< 2e-16). This significant
+    difference suggests that changes in pitch selection could
+    substantially impact overall hit distances, not the ball (this seems
+    like an obvious point, but still good to note).
+
+2)  Batter Handedness: Right-handed batters had significantly shorter
+    hit distances (about 11.2 feet) compared to left-handed batters (p =
+    0.00727). This indicates that the mix of left- and right-handed
+    batters could affect average hit distances.
+
+3)  Hit Direction: There is a significant positive relationship between
+    hit bearing and distance (p = 0.00101), suggesting that pulled balls
+    tend to travel further.
+
+4)  Spin Rate: There was a significant positive relationship between
+    spin rate and hit distance (p \< 2e-16), indicating that changes in
+    pitching techniques could influence hit distances.
+
+To further investigate different types of hits, I performed a simple
+clustering analysis, identifying three main groups: "Pull Hitters,"
+"Up-the-Middle Hitters," and "Pop-ups/Weak Contact." This analysis
+helped me understand how different hitting approaches have evolved over
+time and their impact on overall distance trends.
+
+While I did observe an increase in hit distances from 2015 to 2019, the
+evidence does not strongly support the "juiced ball" theory. The lack of
+significant changes in drag coefficients and exit velocities, combined
+with the substantial effects of pitch type, batter handedness, and hit
+direction, suggests that other factors are likely driving the increase
+in distances.
+
+I am a strong proponent that the jump in hit distances from 2016 (171.9
+feet) to 2017 (182.6 feet) coincides with the "launch angle revolution"
+in baseball. Many players and teams began adopting approaches focused on
+optimizing launch angles for increased distance. This shift in hitting
+strategy, combined with the effects of pitch selection and batter
+tendencies, provides a plausible explanation for the observed increases
+without necessitating changes to the ball itself.
+
+Based on my comprehensive analysis, I conclude that there is
+insufficient statistical and qualitative evidence to support the "juiced
+ball" theory. The observed increases in hit distances are more likely
+the result of evolving hitting strategies, changes in pitch selection,
+and possibly shifts in the types of players coming to the plate. The
+game of baseball is constantly evolving, and these changes appear to be
+driving the trends we're seeing rather than fundamental alterations to
+the ball.
+
+While the allure of a "juiced ball" narrative is compelling, the data
+points to a more nuanced reality: baseball is changing, but through the
+collective adaptations of players and strategies rather than through
+alterations to the ball itself.
+
+```{r, label = juiced_ball}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+## Ball Defect Analysis
+# Load required libraries
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(car)
+library(readr)
+library(gridExtra)
+library(broom)
+library(knitr)
+library(scales)
+library(cluster)
+library(factoextra)
+
+# Load the data
+df <- read_csv("data_sample.csv")
+
+# Data preprocessing 1
+preprocess_data <- function(df) {
+  df %>%
+    mutate(
+      date = ymd(paste(year, month, "01", sep = "-")),
+      across(c(release_speed, plate_speed, hit_exit_speed, hit_spinrate, 
+               hit_vertical_angle, hit_bearing, hit_distance), as.numeric),
+      season = case_when(
+        month %in% c(3, 4, 5) ~ "Spring",
+        month %in% c(6, 7, 8) ~ "Summer",
+        month %in% c(9, 10) ~ "Fall"
+      )
+    )
+}
+
+df <- preprocess_data(df)
+
+# Exploratory Data Analysis
+perform_eda <- function(df) {
+  print(summary(df))
+  print(df %>% group_by(year) %>% summarise(mean_hit_distance = mean(hit_distance, na.rm = TRUE)))
+}
+
+#Plots
+plot_trends <- function(df) {
+  # Hit Distance Over Time
+  p1 <- ggplot(df, aes(x = date, y = hit_distance)) +
+    geom_point(alpha = 0.1, color = "darkblue") +
+    geom_smooth(method = "loess", se = FALSE, color = "red") +
+    labs(title = "Hit Distance Over Time",
+         x = "Date", y = "Hit Distance (feet)",
+         caption = "Smoothed trend line in red") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+  
+  # Exit Velocity vs Distance by Year
+  p2 <- ggplot(df, aes(x = hit_exit_speed, y = hit_distance, color = factor(year))) +
+    geom_point(alpha = 0.3) +
+    geom_smooth(method = "lm", se = FALSE) +
+    labs(title = "Exit Velocity vs Hit Distance",
+         x = "Exit Velocity (mph)", y = "Hit Distance (feet)",
+         color = "Year") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, face = "bold"),
+          legend.position = "bottom")
+  
+  # Launch Angle Distribution by Year
+  p3 <- ggplot(df, aes(x = hit_vertical_angle, fill = factor(year))) +
+    geom_density(alpha = 0.7) +
+    labs(title = "Launch Angle Distribution by Year",
+         x = "Launch Angle (degrees)", y = "Density",
+         fill = "Year") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, face = "bold"),
+          legend.position = "bottom")
+  
+  # Home Run Rate by Year
+  hr_rate <- df %>%
+    group_by(year) %>%
+    summarize(hr_rate = mean(event_result == "home_run", na.rm = TRUE))
+  
+  p4 <- ggplot(hr_rate, aes(x = factor(year), y = hr_rate)) +
+    geom_bar(stat = "identity", fill = "darkgreen") +
+    labs(title = "Home Run Rate by Year",
+         x = "Year", y = "Home Run Rate") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
+    scale_y_continuous(labels = percent)
+  
+  # Arrange plots
+  grid.arrange(p1, p2, p3, p4, ncol = 2)
+}
+
+# New analyses
+additional_analyses <- function(df) {
+  # Seasonal analysis
+  season_model <- lm(hit_distance ~ year + season, data = df)
+  print("Seasonal Effect on Hit Distance:")
+  print(summary(season_model))
+  
+  # Pitch type analysis
+  pitch_type_model <- lm(hit_distance ~ year + pitch_type, data = df)
+  print("Pitch Type Effect on Hit Distance:")
+  print(summary(pitch_type_model))
+  
+  # Spin rate analysis
+  spin_rate_model <- lm(hit_distance ~ year + hit_spinrate, data = df)
+  print("Spin Rate Effect on Hit Distance:")
+  print(summary(spin_rate_model))
+  
+  # Pitcher type analysis
+  pitcher_type_model <- lm(hit_distance ~ year + pitcher_throws, data = df)
+  print("Pitcher Type Effect on Hit Distance:")
+  print(summary(pitcher_type_model))
+  
+  # Batter side analysis
+  batter_side_model <- lm(hit_distance ~ year + bat_side, data = df)
+  print("Batter Side Effect on Hit Distance:")
+  print(summary(batter_side_model))
+  
+  # Batter bearing analysis
+  batter_bearing_model <- lm(hit_distance ~ year + hit_bearing, data = df)
+  print("Batter Bearing Effect on Hit Distance:")
+  print(summary(batter_bearing_model))
+  
+  # Visualization of hit distance by pitch type over years
+  p_pitch_type <- ggplot(df, aes(x = factor(year), y = hit_distance, fill = pitch_type)) +
+    geom_boxplot() +
+    labs(title = "Hit Distance by Pitch Type Over Years",
+         x = "Year", y = "Hit Distance (feet)",
+         fill = "Pitch Type") +
+    theme_minimal()
+  
+  print(p_pitch_type)
+}
+
+# Clustering analysis
+cluster_analysis <- function(df) {
+  # Select relevant numeric variables for clustering
+  cluster_data <- df %>%
+    select(hit_distance, hit_exit_speed, hit_bearing, hit_vertical_angle) %>%
+    na.omit()
+  
+  # Normalize the data
+  cluster_data_normalized <- scale(cluster_data)
+  
+  # Perform k-means clustering
+  set.seed(123)
+  kmeans_result <- kmeans(cluster_data_normalized, centers = 3)
+  
+  # Add cluster assignments to the original data
+  df$cluster <- kmeans_result$cluster[match(1:nrow(df), as.numeric(rownames(cluster_data)))]
+  
+  # Define cluster labels
+  cluster_labels <- c("Pull Hitters", "Up-the-Middle Hitters", "Pop-ups/Weak Contact")
+  
+  # Assign labels to clusters based on their characteristics
+  cluster_centers <- kmeans_result$centers
+  cluster_assignment <- order(abs(cluster_centers[, "hit_bearing"]), decreasing = TRUE)
+  cluster_names <- cluster_labels[cluster_assignment]
+  
+  # Create a named vector for easy mapping
+  cluster_name_map <- setNames(cluster_names, 1:3)
+  
+  # Add cluster names to the dataframe
+  df$cluster_name <- cluster_name_map[as.character(df$cluster)]
+  
+  # Visualize clusters
+  p1 <- fviz_cluster(kmeans_result, data = cluster_data_normalized,
+                     geom = "point",
+                     ellipse.type = "convex",
+                     ggtheme = theme_minimal()) +
+    labs(title = "K-means Clustering of Batted Balls",
+         subtitle = "Based on hit distance, exit speed, bearing, and vertical angle") +
+    scale_color_discrete(name = "Cluster", labels = cluster_names) +
+    scale_shape_discrete(name = "Cluster", labels = cluster_names)
+  
+  # Analyze clusters over time
+  cluster_year_summary <- df %>%
+    group_by(year, cluster_name) %>%
+    summarise(mean_distance = mean(hit_distance, na.rm = TRUE),
+              mean_exit_speed = mean(hit_exit_speed, na.rm = TRUE),
+              mean_bearing = mean(hit_bearing, na.rm = TRUE),
+              mean_vertical_angle = mean(hit_vertical_angle, na.rm = TRUE),
+              .groups = "drop")
+  
+  p2 <- ggplot(cluster_year_summary, aes(x = factor(year), y = mean_distance, color = cluster_name)) +
+    geom_line(aes(group = cluster_name)) +
+    geom_point() +
+    labs(title = "Mean Hit Distance by Cluster Over Years",
+         x = "Year", y = "Mean Hit Distance (feet)",
+         color = "Cluster Type") +
+    theme_minimal()
+  
+  # Visualize cluster characteristics
+  cluster_summary <- df %>%
+    group_by(cluster_name) %>%
+    summarise(across(c(hit_distance, hit_exit_speed, hit_bearing, hit_vertical_angle),
+                     list(mean = mean, sd = sd), na.rm = TRUE, .names = "{.col}_{.fn}"))
+  
+  cluster_summary_long <- cluster_summary %>%
+    pivot_longer(cols = -cluster_name, 
+                 names_to = c("variable", "stat"), 
+                 names_pattern = "(.*)_(.*)",
+                 values_to = "value")
+  
+  p3 <- ggplot(cluster_summary_long %>% filter(stat == "mean"), 
+               aes(x = cluster_name, y = value, fill = cluster_name)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_errorbar(data = cluster_summary_long %>% filter(stat == "sd"),
+                  aes(ymin = value, ymax = value), width = 0.2, position = position_dodge(0.9)) +
+    facet_wrap(~ variable, scales = "free_y", nrow = 2) +
+    labs(title = "Cluster Characteristics",
+         x = "Cluster Type", y = "Value",
+         fill = "Cluster Type") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+  # Print all plots
+  print(p1)
+  print(p2)
+  print(p3)
+  
+  # Return the clustered data for further analysis if needed
+  return(df)
+}
+
+# Main analysis
+perform_eda(df)
+plot_trends(df)
+additional_analyses(df)
+df_clustered <- cluster_analysis(df)
+
+```
